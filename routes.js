@@ -1,4 +1,5 @@
 import express from 'express';
+import Fluxo from './models/fluxo.js';
 
 const routes = express.Router();
 
@@ -13,9 +14,7 @@ routes.get('/', (req, res) => {
 });
 
 routes.get('/transacao', (req, res) => {
-    return res.status(201).json({
-        msg: "Retornou o get type module"
-    })
+    return Fluxo.buscaTodos(req, res);
 });
 
 routes.get('/transacao/:id', (req, res) => {
