@@ -1,5 +1,5 @@
 import express from 'express';
-import Fluxo from './models/fluxo.js';
+import Colaborador from './models/colaborador.js';
 
 const routes = express.Router();
 
@@ -13,11 +13,11 @@ routes.get('/', (req, res) => {
     return res.status(201).json({ hello: 'pagina inicial logo será implementada' })
 });
 
-routes.get('/transacao', (req, res) => {
-    return Fluxo.buscaTodos(req, res);
+routes.get('/colaborador', (req, res) => {
+    return Colaborador.buscaTodos(req, res);
 });
 
-routes.get('/transacao/:id', (req, res) => {
+routes.get('/colaborador/:id', (req, res) => {
     const { id } = req.params;
     return res.status(200).json({
         id,
@@ -25,20 +25,19 @@ routes.get('/transacao/:id', (req, res) => {
     })
 });
 
-routes.post('/transacao', (req, res) => {
-    const { titulo, valor, tipo, categoria } = req.body;
-    var transacao = {
-        id: 1,
-        "title": titulo,
-        "transaction_value": valor,
-        "transaction_type": tipo,
-        "product_owner": categoria,
+routes.post('/colaborador', (req, res) => {
+    const { colab_nome, colab_cargo, colab_imagem, colab_time } = req.body;
+    var colaborador = {
+        "nome": colab_nome,
+        "cargo": colab_cargo,
+        "imagem": colab_imagem,
+        "colab_time": colab_time,
     }
 
-    return res.status(200).json(transacao)
+    return Colaborador.cadastraColaborador(colaborador, res);
 })
 
-routes.put('/transacao/:id', (req, res) => {
+routes.put('/colaborador/:id', (req, res) => {
     const { id } = req.params;
     return res.status(200).json({
         msg: "Ok"
@@ -46,7 +45,7 @@ routes.put('/transacao/:id', (req, res) => {
 })
 
 
-routes.delete('/transacao/:id', (req, res) => {
+routes.delete('/colaborador/:id', (req, res) => {
     const { id } = req.params;
     return res.status(200).json({ msg: 'o registro "' + id + '" foi apagado com sucesso.' })
 });
