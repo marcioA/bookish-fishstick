@@ -27,6 +27,7 @@ routes.get('/colaborador/:id', (req, res) => {
 
 routes.post('/colaborador', (req, res) => {
     const { colab_nome, colab_cargo, colab_imagem, colab_time } = req.body;
+    console.log(req.body)
     var colaborador = {
         "nome": colab_nome,
         "cargo": colab_cargo,

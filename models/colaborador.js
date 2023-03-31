@@ -6,6 +6,7 @@ class Colaborador {
 
         conexao.query(sql, (erro, resultado) => {
             if (erro) {
+                console.log(erro);
                 res.status(400).json(erro);
             } else {
                 res.status(200).json(resultado);
