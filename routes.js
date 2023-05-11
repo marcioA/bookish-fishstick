@@ -1,5 +1,6 @@
 import express from 'express';
 import Colaborador from './models/colaborador.js';
+import Posts from './models/posts.js';
 
 const routes = express.Router();
 
@@ -49,6 +50,10 @@ routes.put('/colaborador/:id', (req, res) => {
 routes.delete('/colaborador/:id', (req, res) => {
     const { id } = req.params;
     return res.status(200).json({ msg: 'o registro "' + id + '" foi apagado com sucesso.' })
+});
+
+routes.get('/posts', (req, res) => {
+    return Posts.buscaTodos(req, res);
 });
 
 export default routes;
